@@ -1,0 +1,32 @@
+{
+    "name": "cmd",
+    "version": "1.0.0",
+    "description": "A discord.js command handler",
+    "main": "index.js",
+    "scripts": {
+        "build": "tsc",
+        "dev": "ts-node ./test/index.ts"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/TomaSajt/discord-cmd.git"
+    },
+    "keywords": [
+        "discord",
+        "discordjs"
+    ],
+    "author": "TomaSajt",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/TomaSajt/discord-cmd/issues"
+    },
+    "homepage": "https://github.com/TomaSajt/discord-cmd#readme",
+    "devDependencies": {
+        "@types/node": "^16.0.0",
+        "ts-node": "^10.0.0",
+        "typescript": "^4.3.5"
+    },
+    "dependencies": {
+        "discord.js": "^12.5.3"
+    }
+}

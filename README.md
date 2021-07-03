@@ -1,1 +1,1 @@
-"# A discord.js command handler" 
+# A discord.js command handler
