@@ -2,6 +2,7 @@ import { Client, EmojiIdentifierResolvable, Guild, GuildMember, Message, Snowfla
 import { Interaction, Definition, InteractionResponse, ApplicationCommandInteractionDataOption } from './discord_type_extensions'
 import * as SlashUtils from './slash_utils'
 import fs from "fs";
+import appRoot from 'app-root-path'
 import { respondToInteraction } from './interaction_utils';
 
 export type CombinedHandlerArgs = {
@@ -131,9 +132,6 @@ export class PrefixCommandHandler {
             var key = this.prefix + name
             var args = message.content.substring(message.content.indexOf(key) + key.length).trim().split(' ').filter(str => str != "");
             cmd.action({ client: this.client, message, pch: this, name: name, args })
-
-
-
         })
     }
 }
@@ -166,9 +164,7 @@ export class IncludesCommandHandler {
                 message.channel.send("Insufficient permissions.")
                 return;
             }
-
             cmd.action({ client: this.client, message, ich: this, name })
-
         })
     }
 }
@@ -204,7 +200,6 @@ export class SlashCommandHandler {
 
 
     private handleSlashCommand(interaction: Interaction) {
-        console.log('got interaction')
         console.log(interaction)
         //console.log(interaction)
         this.commands.forEach(async cmd => {
@@ -217,8 +212,6 @@ export class SlashCommandHandler {
                 this.sendInsufftPerms(interaction)
                 return;
             }
-
-
             var args: any = {}
             var argsOptions: ApplicationCommandInteractionDataOption[] | undefined
             var subcommand: string | undefined
@@ -259,7 +252,7 @@ export class SlashCommandHandler {
             var defaultData: InteractionResponse = {
                 type: 4,
                 data: {
-                    content: "k"
+                    content: "done"
                 }
             }
             if (channel instanceof TextChannel) {
@@ -269,9 +262,6 @@ export class SlashCommandHandler {
             } else {
                 respondToInteraction(this.client, interaction, defaultData)
             }
-
-
-
         })
     }
 
@@ -357,7 +347,7 @@ export class CommandLoader<T extends Command> {
                 .readdirSync(`${this.dir}`).filter(file => file.endsWith('.ts'))
                 .map(
                     async (file) => {
-                        var cmd = (await import(`../${this.dir}/${file}`)).default as T
+                        var cmd = (await import(`${appRoot}/${this.dir}/${file}`)).default as T
                         console.log(`Loaded command: ${this.dir}/${file}`)
                         return cmd
                     }
