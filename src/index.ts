@@ -344,7 +344,7 @@ export class CommandLoader<T extends Command> {
     loadCommands(): Promise<T[]> {
         return Promise.all(
             fs
-                .readdirSync(`${this.dir}`).filter(file => file.endsWith('.ts'))
+                .readdirSync(`${appRoot}/${this.dir}`).filter(file => file.endsWith('.ts'))
                 .map(
                     async (file) => {
                         var cmd = (await import(`${appRoot}/${this.dir}/${file}`)).default as T
