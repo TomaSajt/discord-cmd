@@ -1,9 +1,9 @@
 {
     "name": "@tomasajt/cmd",
-    "version": "1.0.3",
+    "version": "1.0.5",
     "description": "A discord.js command handler",
-    "main": "index.js",
-    "types": "libs/index.d.ts",
+    "main": "lib/index.js",
+    "types": "lib/index.d.ts",
     "scripts": {
         "build": "tsc",
         "test": "ts-node ./test/index.ts"
